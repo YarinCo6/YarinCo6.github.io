@@ -1,0 +1,31 @@
+/* Home "Latest Business Reports" 3D carousel — see reports-carousel.js */
+.agrc-stage { position: relative !important; display: block !important; height: var(--agrc-h, 520px); perspective: 1400px; touch-action: pan-y; user-select: none; -webkit-user-select: none; cursor: grab; outline: none; transition: height .35s ease; }
+.agrc-stage:focus-visible { outline: 2px solid hsl(var(--primary)); outline-offset: 8px; border-radius: 12px; }
+.agrc-stage.dragging { cursor: grabbing; }
+.agrc-stage > div { position: absolute !important; top: 0; left: 50%; width: var(--agrc-w, 360px); margin-left: calc(var(--agrc-w, 360px) / -2); opacity: 1 !important; transform: none !important; transform-style: preserve-3d; }
+.agrc-stage > div > a { display: block; will-change: transform, opacity; transform-origin: center center; }
+.agrc-stage > div > a .rounded-lg.h-full { box-shadow: 0 30px 60px -32px rgba(15, 20, 30, .45); }
+.agrc-stage > div.agrc-side > a { cursor: pointer; }
+.agrc-stage > div.agrc-side > a .rounded-lg.h-full::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: rgba(255, 255, 255, .28); pointer-events: none; }
+.agrc-stage.dragging a { pointer-events: none; }
+
+.agrc-ctrl { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 30px; }
+.agrc-btn { all: unset; box-sizing: border-box; width: 46px; height: 46px; border-radius: 50%; border: 2px solid hsl(var(--border)); display: grid; place-items: center; cursor: pointer; color: hsl(var(--foreground)); transition: border-color .2s, color .2s, transform .2s; }
+.agrc-btn:hover { border-color: hsl(var(--primary)); color: hsl(var(--primary)); transform: scale(1.06); }
+.agrc-btn:active { transform: scale(.95); }
+.agrc-btn:focus-visible { outline: 2px solid hsl(var(--primary)); outline-offset: 3px; }
+.agrc-dots { display: flex; gap: 8px; align-items: center; }
+.agrc-dots button { all: unset; cursor: pointer; width: 8px; height: 8px; border-radius: 99px; background: hsl(var(--border)); transition: width .3s, background .3s; }
+.agrc-dots button.on { width: 26px; background: hsl(var(--primary)); }
+.agrc-dots button:focus-visible { outline: 2px solid hsl(var(--primary)); outline-offset: 3px; }
+.agrc-hint { margin-top: 10px; text-align: center; font-size: 13px; color: hsl(var(--muted-foreground)); }
+
+/* Heading above the carousel: centred */
+[data-agrc-head] { justify-content: center !important; text-align: center; }
+
+/* No hover tilt on the cards: the 3D tilt blurred the text. Keep the green glow border. */
+.agrc-stage .group[style*="preserve-3d"] { transform: none !important; }
+.agrc-stage > div > a { -webkit-font-smoothing: antialiased; backface-visibility: hidden; }
+
+/* No green tint over the image on hover; the title turning green is enough. */
+.agrc-stage .overflow-hidden.rounded-t-lg > .absolute.inset-0 { display: none !important; }

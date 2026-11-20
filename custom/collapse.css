@@ -1,0 +1,22 @@
+/* Site-wide dropdowns for lists and long texts — see collapse.js */
+[data-agc="closed"] { display: none !important; }
+/* open/close motion is done in collapse.js (Web Animations), both directions */
+
+/* A heading/label that became the toggle */
+[data-agt][role="button"] { cursor: pointer; user-select: none; transition: color .2s; }
+[data-agt][role="button"]:hover { color: hsl(var(--primary)); }
+[data-agt][role="button"]:focus-visible,
+.ag-more:focus-visible { outline: 2px solid hsl(var(--primary)); outline-offset: 3px; border-radius: 4px; }
+
+/* Inserted "Read more" / "Show all" button */
+.ag-more { all: unset; box-sizing: border-box; display: flex; align-items: center; width: fit-content; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 600; color: hsl(var(--primary)); margin: 2px 0 10px; transition: color .2s; }
+.ag-more:hover { color: hsl(var(--accent)); }
+
+/* Chevron on both kinds of toggle */
+[data-agt][role="button"]::after,
+.ag-more::after { content: ""; display: inline-block; flex-shrink: 0; width: .42em; height: .42em; margin-left: .55em; border-right: 2px solid hsl(var(--primary)); border-bottom: 2px solid hsl(var(--primary)); transform: translateY(-.15em) rotate(45deg); transition: transform .3s; }
+[data-agt][aria-expanded="true"]::after { transform: translateY(.1em) rotate(-135deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-agt]::after { transition: none !important; }
+}

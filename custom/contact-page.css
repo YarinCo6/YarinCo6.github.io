@@ -1,0 +1,96 @@
+/* /contact redesign — see contact-page.js. Restyles the original page; the form itself is untouched. */
+[data-agct] {
+  --g: hsl(150 40% 52%);
+  --gd: hsl(150 38% 38%);
+  --ink: hsl(220 20% 10%);
+  --mut: hsl(220 10% 45%);
+  --line: hsl(220 15% 86%);
+  --dk: hsl(220 15% 15%);
+  position: relative; overflow: hidden;
+  padding: 72px 0 110px !important;
+  background: linear-gradient(90deg, var(--dk) 50%, #f5f6f4 50%) !important;
+}
+[data-agct]::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 50%; pointer-events: none;
+  background: radial-gradient(60% 50% at 30% 30%, hsl(150 40% 30% / .35), transparent 70%), radial-gradient(rgba(255,255,255,.1) 1px, transparent 1.3px) 0 0 / 26px 26px;
+  -webkit-mask-image: linear-gradient(90deg, #000 60%, transparent); mask-image: linear-gradient(90deg, #000 60%, transparent); }
+[data-agct] > div { position: relative; z-index: 1; }
+[data-agct] .grid { align-items: center; gap: 72px !important; }
+[data-agct] .grid > div:first-child { color: #fff; padding-right: 12px; }
+
+/* hero */
+#ag-contact { font-family: inherit; }
+.agct-kick { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+.agct-h1 { font-size: clamp(56px, 7vw, 104px); font-weight: 700; letter-spacing: -.045em; line-height: .92; margin: 16px 0 0; text-wrap: balance; }
+.agct-h1 span { color: var(--g); }
+.agct-sub { margin: 20px 0 0; font-size: clamp(18px, 1.6vw, 22px); color: rgba(255,255,255,.72); text-wrap: pretty; }
+
+/* live chat preview */
+.agct-chat { margin: 36px 0 34px; max-width: 440px; padding: 16px; border-radius: 20px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); display: flex; flex-direction: column; gap: 10px; }
+.agct-chat-top { display: flex; align-items: center; gap: 8px; font-size: 13px; padding-bottom: 6px; }
+.agct-chat-top i { width: 8px; height: 8px; border-radius: 50%; background: var(--g); animation: agctPing 1.8s infinite; }
+.agct-chat-top b { font-weight: 700; }
+.agct-chat-top em { font-style: normal; color: rgba(255,255,255,.5); margin-left: auto; font-size: 12px; }
+.agct-msg { max-width: 88%; padding: 11px 14px; border-radius: 14px; font-size: 14px; line-height: 1.45; overflow-wrap: anywhere; }
+.agct-msg.ai { align-self: flex-start; background: #fff; color: var(--ink); border-bottom-left-radius: 4px; }
+.agct-msg.me { align-self: flex-end; background: var(--g); color: #fff; border-bottom-right-radius: 4px; transition: opacity .3s, background .3s; white-space: pre-wrap; max-height: 9.5em; overflow: hidden; }
+.agct-msg.me.empty { background: transparent; border: 1px dashed rgba(255,255,255,.3); color: rgba(255,255,255,.55); }
+.agct-msg.me .who { display: block; margin-top: 6px; font-size: 12px; opacity: .85; }
+.agct-msg.me .who:empty { display: none; }
+.agct-typing { display: none; align-self: flex-start; gap: 4px; padding: 11px 14px; border-radius: 14px; background: rgba(255,255,255,.12); }
+.agct-chat.typing .agct-typing { display: flex; }
+.agct-typing i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.7); animation: agctDot 1.2s infinite; }
+.agct-typing i:nth-child(2) { animation-delay: .15s; } .agct-typing i:nth-child(3) { animation-delay: .3s; }
+.agct-msg.done { display: none; }
+.agct-chat.sent .agct-msg.done { display: block; animation: agctPop .45s cubic-bezier(.2,.8,.2,1.2); }
+
+/* contact rows (email / phone / LinkedIn) */
+[data-agct] .space-y-6 > * { margin-top: 0 !important; }
+[data-agct] .space-y-6 > .flex { align-items: center; gap: 18px; padding: 16px 12px; margin: 0 -12px; border-top: 1px solid rgba(255,255,255,.1); border-radius: 14px; transition: background .25s; }
+[data-agct] .space-y-6 > .flex:hover { background: rgba(255,255,255,.05); }
+[data-agct] .space-y-6 > .flex > :first-child { width: 48px; height: 48px; border-radius: 14px; background: hsl(150 40% 52% / .15) !important; color: var(--g); }
+[data-agct] .space-y-6 img[alt="LinkedIn"] { filter: brightness(0) invert(1); width: 26px; height: 26px; }
+[data-agct] .space-y-6 h3 { color: rgba(255,255,255,.5) !important; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 2px !important; }
+[data-agct] .space-y-6 h3 + a { color: #fff !important; font-size: 19px; font-weight: 600; transition: color .2s; }
+[data-agct] .space-y-6 h3 + a:hover { color: var(--g) !important; }
+
+/* form card */
+[data-agct] form { font-family: inherit; }
+[data-agct] .grid > div:last-child > div { background: #fff !important; border: 0 !important; border-radius: 26px !important; padding: 40px !important; box-shadow: 0 60px 120px -50px rgba(10,15,20,.45), 0 0 0 1px rgba(10,15,20,.04); }
+[data-agct] .grid > div:last-child h2 { font-size: 30px !important; font-weight: 700 !important; letter-spacing: -.02em; margin-bottom: 26px !important; }
+[data-agct] form label { font-size: 12px !important; font-weight: 600 !important; letter-spacing: .08em; text-transform: uppercase; color: var(--mut); }
+[data-agct] form input, [data-agct] form textarea, [data-agct] form button[role="combobox"] { height: 50px; border-radius: 12px !important; border: 1.5px solid var(--line) !important; background: #fafbfa !important; font-size: 16px !important; transition: border-color .2s, box-shadow .2s, background .2s; }
+[data-agct] form textarea { height: auto; min-height: 120px; padding-top: 12px !important; resize: vertical; }
+[data-agct] form input:hover, [data-agct] form textarea:hover { border-color: hsl(220 12% 75%) !important; }
+[data-agct] form input:focus, [data-agct] form textarea:focus, [data-agct] form input:focus-visible, [data-agct] form textarea:focus-visible { outline: none !important; border-color: var(--g) !important; background: #fff !important; box-shadow: 0 0 0 4px hsl(150 40% 52% / .16) !important; }
+[data-agct] form button[type="submit"] { width: 100%; height: 54px; border-radius: 14px !important; font-size: 16px !important; font-weight: 600 !important; background: var(--g) !important; color: #fff !important; margin-top: 8px; transition: background .2s, transform .2s; }
+[data-agct] form button[type="submit"]:hover { background: var(--gd) !important; transform: translateY(-1px); }
+
+/* entrance */
+[data-agct] .agct-hero > *, [data-agct] .agct-chat, [data-agct] .space-y-6 > .flex, [data-agct] .grid > div:last-child > div { opacity: 0; }
+[data-agct].agct-in .agct-hero > *, [data-agct].agct-in .agct-chat, [data-agct].agct-in .space-y-6 > .flex, [data-agct].agct-in .grid > div:last-child > div { animation: agctUp .8s cubic-bezier(.2,.8,.2,1) both; }
+[data-agct].agct-in .agct-hero > :nth-child(2) { animation-delay: .08s; }
+[data-agct].agct-in .agct-hero > :nth-child(3) { animation-delay: .16s; }
+[data-agct].agct-in .agct-chat { animation-delay: .26s; }
+[data-agct].agct-in .space-y-6 > .flex:nth-child(1) { animation-delay: .36s; }
+[data-agct].agct-in .space-y-6 > .flex:nth-child(2) { animation-delay: .44s; }
+[data-agct].agct-in .space-y-6 > .flex:nth-child(3) { animation-delay: .52s; }
+[data-agct].agct-in .grid > div:last-child > div { animation-delay: .2s; animation-name: agctCard; }
+
+@keyframes agctUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes agctCard { from { opacity: 0; transform: translateY(40px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes agctPop { from { opacity: 0; transform: translateY(10px) scale(.96); } }
+@keyframes agctDot { 0%, 60%, 100% { transform: none; opacity: .45; } 30% { transform: translateY(-4px); opacity: 1; } }
+@keyframes agctPing { 0% { box-shadow: 0 0 0 0 hsl(150 40% 52% / .6); } 70%, 100% { box-shadow: 0 0 0 9px hsl(150 40% 52% / 0); } }
+
+@media (max-width: 1023px) {
+  [data-agct] { background: #f5f6f4 !important; padding: 0 0 80px !important; }
+  [data-agct]::before { width: 100%; bottom: auto; height: 640px; -webkit-mask-image: none; mask-image: none; }
+  [data-agct] .grid { gap: 32px !important; }
+  [data-agct] .grid > div:first-child { background: var(--dk); margin: 0 -16px; padding: 40px 16px 28px; }
+  [data-agct] .grid > div:last-child > div { padding: 24px !important; border-radius: 20px !important; }
+  [data-agct] .grid > div:last-child h2 { font-size: 24px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-agct] *, [data-agct] *::before { animation: none !important; transition: none !important; }
+  [data-agct] .agct-hero > *, [data-agct] .agct-chat, [data-agct] .space-y-6 > .flex, [data-agct] .grid > div:last-child > div { opacity: 1; }
+}

@@ -1,0 +1,64 @@
+/* Home "Connected retail" scroll build-in — see connected-retail.js */
+[data-agcr-m] { opacity: 1 !important; transform: none !important; }
+.agcr-band { will-change: clip-path; }
+.agcr-bridge { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
+.agcr-arc-bg { fill: none; stroke: rgba(255,255,255,.07); stroke-width: 2; stroke-dasharray: 2 8; }
+.agcr-arc { fill: none; stroke: hsl(var(--primary)); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; filter: drop-shadow(0 0 6px hsl(var(--primary) / .7)); }
+.agcr-pk { opacity: 0; transition: opacity .4s; }
+.agcr-pk.on { opacity: 1; }
+.agcr-pk circle { fill: hsl(150 70% 85%); filter: drop-shadow(0 0 6px hsl(var(--primary))); }
+.agcr-node { transform-box: fill-box; transform-origin: center; opacity: 0; }
+.agcr-disc { fill: hsl(220 15% 20%); stroke: hsl(var(--primary) / .7); stroke-width: 2; }
+.agcr-halo { fill: hsl(var(--primary)); opacity: 0; transform-box: fill-box; transform-origin: center; animation: agcrHalo 2.8s ease-out infinite; }
+.agcr-ic { fill: none; stroke: #fff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.agcr-lbl { fill: rgba(255,255,255,.6); font-family: Inter, sans-serif; font-size: 15px; font-weight: 500; letter-spacing: .04em; }
+@keyframes agcrHalo { 0% { transform: scale(.6); opacity: .35; } 100% { transform: scale(1.25); opacity: 0; } }
+@media (max-width: 900px) { .agcr-bridge { display: none; } }
+@media (prefers-reduced-motion: reduce) { .agcr-halo { animation: none; } }
+
+/* ---------- display ---------- */
+/* Band ambience: slow-drifting green light + a soft dotted grid */
+.agcr-band { overflow: hidden; }
+.agcr-band::before { content: ""; position: absolute; inset: -20%; z-index: 1; pointer-events: none;
+  background: radial-gradient(40% 50% at 22% 30%, hsl(var(--primary) / .24), transparent 70%), radial-gradient(35% 45% at 80% 62%, hsl(170 60% 45% / .16), transparent 70%);
+  animation: agcrDrift 14s ease-in-out infinite alternate; }
+.agcr-band::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background-image: radial-gradient(rgba(255,255,255,.13) 1px, transparent 1.3px); background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(70% 60% at 50% 38%, #000 25%, transparent 75%); mask-image: radial-gradient(70% 60% at 50% 38%, #000 25%, transparent 75%); }
+@keyframes agcrDrift { from { transform: translate(0, 0) scale(1); } to { transform: translate(4%, -3%) scale(1.08); } }
+
+/* Heading: a slow light sweep across the text */
+.agcr-band h2 { background: linear-gradient(100deg, #fff 0%, #fff 38%, hsl(150 60% 72%) 50%, #fff 62%, #fff 100%); background-size: 260% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent; animation: agcrShine 7s ease-in-out infinite; }
+@keyframes agcrShine { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0 0; } }
+
+/* The card becomes a floating dark console (no hover tilt: it blurred the text) */
+.group:has(> .agcr-console) { transform: none !important; }
+.group:has(> .agcr-console) > .absolute { border-radius: 25px; }
+.agcr-console { background: linear-gradient(160deg, #282c35, #181b21) !important; border: 1px solid rgba(255,255,255,.08); border-radius: 24px !important;
+  box-shadow: 0 50px 100px -40px rgba(10,15,20,.65), 0 0 90px -30px hsl(var(--primary) / .45); }
+.agcr-console > div { padding: 18px !important; }
+.agcr-console .space-y-6 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.agcr-console .space-y-6 > * { margin: 0 !important; }
+
+/* Industry tiles */
+.agcr-tile { position: relative; flex-direction: column; gap: 16px !important; min-height: 156px; padding: 22px; border-radius: 18px; cursor: pointer;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, -20%), hsl(var(--primary) / .17), transparent 62%), rgba(255,255,255,.035);
+  border: 1px solid rgba(255,255,255,.08); transition: border-color .3s; }
+.agcr-tile:hover { border-color: hsl(var(--primary) / .55); }
+.agcr-badge { width: 52px !important; height: 52px !important; margin: 0 !important; border-radius: 15px !important;
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(165 50% 36%)) !important; box-shadow: 0 12px 26px -12px hsl(var(--primary) / .85); }
+.agcr-badge > svg:not(.agcr-tile-ic) { display: none; }
+.agcr-tile-ic { width: 26px; height: 26px; color: #fff; }
+.agcr-tile .font-semibold { color: #fff !important; font-size: 20px; }
+.agcr-tile .text-muted-foreground { display: block; margin: 10px 0 0 !important; color: rgba(255,255,255,.68) !important; font-size: 15px; line-height: 1.6; }
+
+@media (max-width: 760px) {
+  .agcr-console .space-y-6 { grid-template-columns: 1fr; gap: 10px; }
+  .agcr-tile { min-height: 0; padding: 16px; flex-direction: row; align-items: center; gap: 14px !important; }
+  .agcr-tile > div:last-child { flex: 1; }
+  .agcr-badge { width: 44px !important; height: 44px !important; border-radius: 13px !important; }
+  .agcr-tile-ic { width: 22px; height: 22px; }
+  .agcr-tile .font-semibold { font-size: 17px; }
+}
+@media (prefers-reduced-motion: reduce) { .agcr-band::before, .agcr-band h2 { animation: none; } }

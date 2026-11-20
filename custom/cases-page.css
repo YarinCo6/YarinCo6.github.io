@@ -1,0 +1,131 @@
+/* /case-studies redesign — see cases-page.js. Site font (inherited Inter), weights 400–700. */
+#ag-cases {
+  --g: hsl(150 40% 52%);
+  --ink: hsl(220 20% 10%);
+  --mut: hsl(220 10% 45%);
+  --dk: hsl(220 15% 15%);
+  --dk2: #0f1115;
+  color: var(--ink);
+}
+#ag-cases *, #ag-cases *::before, #ag-cases *::after { box-sizing: border-box; font-family: inherit; }
+#ag-cases h1, #ag-cases h2 { text-wrap: balance; }
+.cs-wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+
+/* hero */
+.cs-hero { position: relative; background: var(--dk); color: #fff; min-height: 100vh; min-height: 100svh; padding: 120px 0 70px; display: flex; align-items: center; overflow: hidden; }
+.cs-hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(55% 60% at 70% 50%, hsl(150 40% 30% / .3), transparent 70%); pointer-events: none; }
+.cs-hero-in { position: relative; width: 100%; display: grid; grid-template-columns: .85fr 1.15fr; gap: 48px; align-items: center; }
+.cs-kick { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+.cs-h1 { font-size: clamp(50px, 7vw, 104px); font-weight: 700; line-height: .95; letter-spacing: -.045em; margin: 18px 0 0; }
+.cs-h1 span { display: block; color: var(--g); }
+.cs-index { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; }
+.cs-index a { color: #fff; text-decoration: none; font-weight: 600; font-size: 16px; display: inline-flex; align-items: baseline; gap: 10px; width: fit-content; padding-bottom: 4px; border-bottom: 1px solid rgba(255,255,255,.2); transition: color .25s, border-color .25s; }
+.cs-index a b { font-size: 12px; color: var(--g); letter-spacing: .1em; }
+.cs-index a:hover { color: var(--g); border-color: var(--g); }
+.cs-screens { position: relative; height: min(62vh, 540px); perspective: 1600px; }
+.cs-screen { position: absolute; width: 74%; cursor: pointer; will-change: transform; transform-style: preserve-3d; }
+.cs-screen.s0 { left: 0; top: 4%; transform-origin: left center; }
+.cs-screen.s1 { right: 0; bottom: 2%; transform-origin: right center; }
+.cs-screen video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 14px; background: #000; border: 6px solid #0c0e12; box-shadow: 0 40px 80px -30px rgba(0,0,0,.8); }
+.cs-screen span { display: inline-flex; align-items: baseline; gap: 8px; margin-top: 12px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,.85); }
+.cs-screen span b { font-size: 11px; color: var(--g); letter-spacing: .12em; }
+.cs-screen.s0 span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #e5484d; align-self: center; animation: csRec 1.6s ease-in-out infinite; }
+
+/* reels */
+.cs-reel { background: var(--dk2); }
+.cs-track { position: relative; height: 260vh; }
+.cs-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.cs-frame { position: absolute; inset: 0; clip-path: inset(14% 16% round 28px); transform-origin: center; will-change: clip-path, transform; background: #000; }
+.cs-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cs-veil { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(5,7,10,.85), rgba(5,7,10,0) 55%); pointer-events: none; }
+.cs-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 max(32px, calc((100% - 1240px) / 2 + 32px)) 9vh; color: #fff; }
+.cs-n { font-size: 14px; font-weight: 700; letter-spacing: .2em; color: var(--g); display: flex; align-items: center; gap: 12px; }
+.cs-n::after { content: ""; width: 48px; height: 1px; background: currentColor; opacity: .6; }
+.cs-h2 { font-size: clamp(34px, 5.4vw, 80px); font-weight: 700; letter-spacing: -.035em; line-height: 1; margin: 12px 0 0; max-width: 16ch; }
+.cs-watch { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 12px; margin-top: 26px; padding: 12px 22px 12px 14px; border-radius: 99px; background: #fff; color: var(--ink); font-weight: 600; font-size: 15px; transition: background .25s, color .25s, transform .25s; }
+.cs-watch i { width: 30px; height: 30px; border-radius: 50%; background: var(--g); position: relative; }
+.cs-watch i::after { content: ""; position: absolute; left: 12px; top: 9px; border: 6px solid transparent; border-left: 9px solid #fff; border-right: 0; }
+.cs-watch:hover { background: var(--g); color: #fff; transform: translateY(-2px); }
+.cs-watch:hover i { background: #fff; } .cs-watch:hover i::after { border-left-color: var(--g); }
+.cs-watch:focus-visible { outline: 3px solid var(--g); outline-offset: 3px; }
+
+/* coming soon */
+.cs-soon { background: #f5f6f4; }
+.cs-soon-track { position: relative; height: 200vh; }
+.cs-soon-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; padding-top: 80px; }
+.cs-soon-sticky > .cs-wrap { position: relative; z-index: 1; width: 100%; text-align: center; }
+.cs-marquee { position: absolute; left: 0; top: 50%; transform: translateX(0); margin-top: -.6em; white-space: nowrap; font-size: clamp(120px, 20vw, 300px); font-weight: 700; letter-spacing: -.05em; line-height: 1.1; color: transparent; -webkit-text-stroke: 1.5px hsl(220 10% 82%); pointer-events: none; will-change: transform; }
+.cs-marquee span { margin-right: .4em; }
+.cs-soon-h { font-size: clamp(30px, 3.4vw, 48px); font-weight: 700; letter-spacing: -.025em; margin: 0 0 48px; }
+.cs-logos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 980px; margin: 0 auto; }
+.cs-logo { margin: 0; padding: 38px 24px 22px; border-radius: 22px; background: rgba(255,255,255,.9); border: 1px solid hsl(220 15% 88%); box-shadow: 0 30px 60px -40px rgba(10,15,20,.4); display: flex; flex-direction: column; align-items: center; gap: 22px; opacity: 0; }
+.cs-logo img { height: clamp(48px, 6vw, 80px); width: auto; max-width: 80%; object-fit: contain; transition: filter .5s, opacity .5s; }
+.cs-logo img.gray { filter: grayscale(1); opacity: .7; }
+.cs-logo.on img.gray { filter: grayscale(.2); opacity: .9; }
+.cs-logo figcaption { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--mut); }
+.cs-logo figcaption::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--g); animation: csRec 1.6s ease-in-out infinite; }
+
+/* lightbox */
+.cs-lb { position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center; padding: 24px; background: rgba(8,10,14,.88); backdrop-filter: blur(6px); opacity: 0; transition: opacity .3s; }
+.cs-lb.on { opacity: 1; }
+.cs-lb-in { position: relative; width: min(1100px, 100%); aspect-ratio: 16 / 9; }
+.cs-lb-in video { width: 100%; height: 100%; border-radius: 14px; background: #000; display: block; }
+.cs-lb-x { all: unset; cursor: pointer; position: absolute; right: 0; top: -48px; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 18px; background: rgba(255,255,255,.12); }
+.cs-lb-x:hover, .cs-lb-x:focus-visible { background: var(--g); }
+
+@keyframes csRec { 50% { opacity: .35; } }
+
+@media (max-width: 900px) {
+  .cs-wrap { padding: 0 18px; }
+  .cs-hero { padding: 104px 0 50px; }
+  .cs-hero-in { grid-template-columns: 1fr; gap: 28px; }
+  .cs-index { margin-top: 24px; }
+  .cs-screens { height: 74vw; }
+  .cs-screen { width: 82%; }
+  .cs-screen video { border-width: 4px; border-radius: 10px; }
+  .cs-cap { padding: 0 18px 8vh; }
+  .cs-h2 { font-size: 32px; }
+  .cs-watch { margin-top: 16px; font-size: 14px; }
+  .cs-logos { grid-template-columns: 1fr; gap: 12px; max-width: 320px; }
+  .cs-logo { padding: 20px 18px 14px; gap: 12px; }
+  .cs-soon-h { margin-bottom: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #ag-cases *, #ag-cases *::before { animation: none !important; transition: none !important; }
+}
+
+/* --- hero heading + portrait phone screen --- */
+.cs-sub { margin: 24px 0 0; font-size: clamp(19px, 1.7vw, 24px); color: rgba(255,255,255,.75); }
+.cs-screen.s0 { width: 30%; left: 2%; top: 0; }
+.cs-screen.s0 video { aspect-ratio: 2 / 3; border-radius: 22px; border-width: 7px; }
+.cs-screen.s1 { width: 66%; right: 0; bottom: 8%; }
+
+/* --- reel 01: portrait film in a phone, ambient light behind --- */
+.cs-ambient { position: absolute; inset: -10%; width: 120%; height: 120%; object-fit: cover; filter: blur(48px) saturate(1.4); opacity: .3; pointer-events: none; }
+.r0 .cs-sticky { display: flex; align-items: center; padding-top: 80px; }
+.cs-phone-grid { position: relative; z-index: 1; width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 64px; align-items: center; }
+.cs-phone.cs-frame { position: relative; inset: auto; clip-path: none; height: min(76vh, 740px); aspect-ratio: 2 / 3; border-radius: 42px; border: 10px solid #0b0d11; overflow: hidden; box-shadow: 0 60px 120px -40px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.08); will-change: transform; }
+.cs-phone video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cs-cap.cs-cap-side { position: static; padding: 0; }
+@media (max-width: 900px) {
+  .cs-screen.s0 { width: 38%; }
+  .cs-screen.s1 { width: 74%; bottom: 4%; }
+  .cs-phone-grid { grid-template-columns: 1fr; gap: 18px; justify-items: center; text-align: center; }
+  .cs-cap.cs-cap-side .cs-n { justify-content: center; }
+  .cs-cap.cs-cap-side .cs-h2 { margin-left: auto; margin-right: auto; }
+  .cs-phone.cs-frame { height: 56vh; height: 56svh; border-radius: 30px; border-width: 7px; }
+}
+
+/* --- reel 02: framed wide screen, caption below (the film has its own title on screen) --- */
+.r1 .cs-sticky { display: flex; align-items: center; justify-content: center; padding-top: 80px; }
+.cs-wide-wrap { width: min(1180px, 90vw); }
+.cs-frame.cs-wide { position: relative; inset: auto; clip-path: none; width: min(100%, calc((100svh - 360px) * 16 / 9)); margin: 0 auto; aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden; border: 8px solid #0b0d11; box-shadow: 0 60px 120px -40px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.08); transform-origin: center bottom; }
+.cs-frame.cs-wide video { object-fit: cover; }
+.cs-cap.cs-cap-below { position: static; padding: 26px 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; width: min(100%, calc((100svh - 360px) * 16 / 9)); margin: 0 auto; }
+.cs-cap.cs-cap-below .cs-h2 { font-size: clamp(28px, 3.6vw, 52px); max-width: 20ch; }
+.cs-cap.cs-cap-below .cs-watch { margin-top: 0; flex-shrink: 0; }
+@media (max-width: 900px) {
+  .cs-frame.cs-wide { width: 100%; border-width: 5px; border-radius: 14px; }
+  .cs-cap.cs-cap-below { width: 100%; flex-direction: column; align-items: flex-start; padding-top: 18px; }
+  .cs-cap.cs-cap-below .cs-h2 { font-size: 28px; }
+}
